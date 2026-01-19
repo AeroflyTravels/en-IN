@@ -1,16 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script>
-        // Redirect to the correct React route on GitHub Pages
-        var path = window.location.pathname;
-        window.location.replace("/#" + path);
-    </script>
+  <meta charset="UTF-8" />
+  <title>404 | Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- jQuery (required for animation) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(0deg, #202239, #8595AC);
+      font-family: Roboto, sans-serif;
+    }
+
+    ::selection {
+      background: #CDD4DE;
+    }
+
+    .page {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 600px;
+      background: #0D0C1E;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,.3);
+      color: #CDD4DE;
+    }
+
+    header {
+      padding: 30px;
+    }
+
+    header .logo {
+      text-align: center;
+      margin-bottom: -17px;
+    }
+
+    header .logo svg {
+      width: 61px;
+      height: 14px;
+    }
+
+    header nav {
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      position: relative;
+      float: left;
+    }
+
+    header nav::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #565c73;
+      border-radius: 2px;
+      box-shadow: 0 5px 0 #565c73, 0 10px 0 #565c73;
+    }
+
+    header .search {
+      float: right;
+      cursor: pointer;
+    }
+
+    header .search svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .content {
+      text-align: center;
+      padding-top: 118px;
+    }
+
+    .content h1 {
+      font-size: 165px;
+      font-weight: 900;
+      margin: 0;
+      opacity: 0.6;
+    }
+
+    .content h2 {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .content p {
+      font-size: 14px;
+      font-weight: 300;
+      opacity: 0.7;
+      margin-bottom: 140px;
+    }
+
+    .content a {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      border: 1px solid #CDD4DE;
+      padding: 8px 14px;
+      border-radius: 4px;
+      opacity: 0.6;
+      cursor: pointer;
+      color: #CDD4DE;
+      text-decoration: none;
+    }
+
+    .content a:hover {
+      opacity: 1;
+    }
+
+    img.bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      transform: scale(1.1);
+    }
+  </style>
 </head>
+
 <body>
-    <p>Redirecting...</p>
+
+<div class="page">
+  <header>
+    <nav></nav>
+    <div class="logo">
+      <svg><use xlink:href="#logo-dailyui"></use></svg>
+    </div>
+    <div class="search">
+      <svg><use xlink:href="#ico-search"></use></svg>
+    </div>
+  </header>
+
+  <div class="content">
+    <h1>404</h1>
+    <h2>Page not found</h2>
+    <p>I tried to catch some fog, but I mist</p>
+    <a href="/en-IN/">Back to Home</a>
+  </div>
+
+  <img class="bg" src="https://www.supah.it/dribbble/008/008.jpg" />
+</div>
+
+<!-- SVG Symbols -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="logo-dailyui" viewBox="0 0 61 14">
+    <path fill="#525C7C" d="M29.117,0.98h-1.846l-2.407,11.551h6.045l0.334-1.62h-4.198L29.117,0.98z"/>
+  </symbol>
+
+  <symbol id="ico-search" viewBox="0 0 16 16">
+    <path fill="#4F5269" d="M14.769,14.769c-.342.342-.896.342-1.237 0l-3.756-3.756a5.5 5.5 0 1 1 .557-.557l3.756 3.756c.341.343.341.897 0 1.237z"/>
+  </symbol>
+</svg>
+
+<script>
+  let lFollowX = 0, lFollowY = 0, x = 0, y = 0;
+  const friction = 1 / 30;
+
+  function animate() {
+    x += (lFollowX - x) * friction;
+    y += (lFollowY - y) * friction;
+
+    const translate = `translate(${x}px, ${y}px) scale(1.1)`;
+    $('img.bg').css('transform', translate);
+
+    requestAnimationFrame(animate);
+  }
+
+  $(window).on('mousemove click', function(e) {
+    const mouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+    const mouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+    lFollowX = (20 * mouseX) / 100;
+    lFollowY = (10 * mouseY) / 100;
+  });
+
+  animate();
+</script>
+
 </body>
 </html>
