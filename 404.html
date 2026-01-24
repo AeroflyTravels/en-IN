@@ -2,8 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>404 | Page Not Found</title>
+  <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- GitHub Pages SPA Redirect - Must be FIRST -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // This script redirects instantly before the page renders
+    var pathSegmentsToKeep = 1; // Keeps /en-IN/
+
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
 
   <!-- jQuery (required for animation) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
